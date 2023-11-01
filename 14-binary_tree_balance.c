@@ -7,17 +7,15 @@
  * 
  * Return: the number of leaves
  */
-int binary_tree_balance(const binary_tree_t *tree)
+size_t binary_tree_height(const binary_tree_t *tree)
 {
-    size_t left_height;
-    size_t right_height;
+	if (tree)
+	{
+		size_t left = 0, right = 0;
 
-    if (tree == NULL)
-        return (0);
-
-    left_height = binary_tree_height(tree->left);
-    right_height = binary_tree_height(tree->right);
-
-    return (left_height - right_height);
+		left = tree->left ? 1 + binary_tree_height(tree->left) : 1;
+		right = tree->right ? 1 + binary_tree_height(tree->right) : 1;
+		return ((left > right) ? left : right);
+	}
+	return (0);
 }
-

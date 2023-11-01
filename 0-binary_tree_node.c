@@ -9,37 +9,16 @@
  */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
-    binary_tree_t *new_node;
+	binary_tree_t *new;
 
-    new_node = malloc(sizeof(binary_tree_t));
-    if (new_node == NULL)
-    {
-        perror("Error: Insufficient memory!");
-        return (NULL);
-    }
+	new = malloc(sizeof(binary_tree_t));
+	if (new == NULL)
+		return (NULL);
 
-    new_node->n = value;
-    new_node->left = NULL;
-    new_node->right = NULL;
-    new_node->parent = parent;
+	new->n = value;
+	new->parent = parent;
+	new->left = NULL;
+	new->right = NULL;
 
-    if (parent != NULL)
-    {
-        if (parent->n < value)
-        {
-            parent->right = new_node;
-        }
-        else if (parent->n > value)
-        {
-            parent->left = new_node;
-        }
-        else
-        {
-            perror("Error: Value already exists!");
-            free(new_node);
-            return (NULL);
-        }
-    }
-
-    return (new_node);
+	return (new);
 }
